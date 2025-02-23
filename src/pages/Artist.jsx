@@ -1,14 +1,22 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import SongList from '../components/SongList';
+import { artistArray } from '../assets/database/artists';
 
 const Artist = () => {
-  return <div className='artist'>
-  <div className="artist__header" style={{backgroundImage: "linear-gradient(to bottom, var(--_shade), var(--_shade)), url(https://i.scdn.co/image/ab67618600001016e06c8846b7f03fdb987739fb)",}}>
+  const { id } = useParams();
+  // console.log(useParams());
+const artistObj =
+  artistArray.filter((currentArtistObj) => currentArtistObj.id === Number(id))
+  [0]
 
-  <h2 className="artist__title">Grupo Menos é Mais</h2>
+
+  return <div className="artist">
+  <div className="artist__header" style={{backgroundImage: `linear-gradient(to bottom, var(--_shade), var(--_shade)), url(${artistObj.banner})`,}}>
+
+  <h2 className="artist__title">{artistObj.name}</h2>
 
   </div>
 
@@ -16,7 +24,7 @@ const Artist = () => {
   <div className="artist__body">
     <h2>Populares</h2>
 
-   <SongList/>
+   <SongList artistName={artistObj.name}/>
   </div>
   
    <Link to="/song/1">
