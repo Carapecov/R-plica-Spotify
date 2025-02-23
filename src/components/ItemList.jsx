@@ -21,7 +21,7 @@ const finalItems = isHome ? items : Infinity;
       </div>
 
       <div className='item-list__container'>
-        {itemsArray.filter((currentValue, index) => index < finalItems).map((conectObj, index) => ( <SingleItem idPath={idPath} {...conectObj} key={`${title} + ${index}`}/>))}
+        {itemsArray.filter((currentValue, index) => index < finalItems).map((conectObj, index) => ( <SingleItem {...conectObj} idPath={idPath}  key={`${title} + ${index}`}/>))}
       </div>
     </div>
   );
